@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// CLI entry point para pnpm dlx github:lucasnogueiradev/spec-kit-educaflex
+// CLI entry point para pnpm dlx spec-kit-educaflex@github:lucasnogueiradev/spec-kit-educaflex
 // Redireciona para o motor principal da skill onp-spec-driven.
 import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, join } from 'path';

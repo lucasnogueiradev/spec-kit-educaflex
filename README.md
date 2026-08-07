@@ -29,16 +29,16 @@ Se você criou o seu projeto do zero usando **pnpm**, **Vite / Next.js** e **Sha
 
 ```bash
 # Para Antigravity (Gemini IDE):
-pnpm dlx github:lucasnogueiradev/spec-kit-educaflex init --agents antigravity
+pnpm dlx spec-kit-educaflex@github:lucasnogueiradev/spec-kit-educaflex init --agents antigravity
 
 # Para Claude Code:
-pnpm dlx github:lucasnogueiradev/spec-kit-educaflex init --agents claude
+pnpm dlx spec-kit-educaflex@github:lucasnogueiradev/spec-kit-educaflex init --agents claude
 
 # Para Codex:
-pnpm dlx github:lucasnogueiradev/spec-kit-educaflex init --agents codex
+pnpm dlx spec-kit-educaflex@github:lucasnogueiradev/spec-kit-educaflex init --agents codex
 
 # Para Cursor IDE:
-pnpm dlx github:lucasnogueiradev/spec-kit-educaflex init --agents cursor
+pnpm dlx spec-kit-educaflex@github:lucasnogueiradev/spec-kit-educaflex init --agents cursor
 ```
 
 ---
