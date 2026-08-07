@@ -1,0 +1,21 @@
+{
+  "name": "spec-kit-educaflex",
+  "version": "1.0.0",
+  "description": "Kit de desenvolvimento guiado por especificações (Spec-Driven Development) Educaflex",
+  "type": "module",
+  "bin": {
+    "spec-kit": "./bin/spec-kit.mjs",
+    "spec-kit-educaflex": "./bin/spec-kit.mjs"
+  },
+  "files": [
+    "bin/",
+    ".agents/",
+    ".spec/",
+    "onpspec.config.json"
+  ],
+  "scripts": {
+    "spec": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs",
+    "init": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs init",
+    "audit": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs audit"
+  }
+}
