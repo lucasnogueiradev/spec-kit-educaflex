@@ -1,6 +1,6 @@
 // CLI onp-spec — dispatch de comandos.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, chmodSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, chmodSync, readdirSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import {
@@ -210,8 +210,29 @@ function cmdInit(rootDir, flags) {
   }
 
   const specRoot = path.join(rootDir, '.spec');
-  mkdirSync(path.join(specRoot, 'features'), { recursive: true });
+  const targetFeaturesDir = path.join(specRoot, 'features');
+  mkdirSync(targetFeaturesDir, { recursive: true });
   mkdirSync(path.join(specRoot, 'verification'), { recursive: true });
+
+  // Copiar features do kit (ex.: autenticacao-usuario) se existirem no pacote
+  const pkgSpecFeaturesDir = path.resolve(__dirname, '..', '..', '..', '..', '..', '..', '.spec', 'features');
+  if (existsSync(pkgSpecFeaturesDir)) {
+    try {
+      const feats = readdirSync(pkgSpecFeaturesDir, { withFileTypes: true });
+      for (const feat of feats) {
+        if (feat.isDirectory()) {
+          const srcFeat = path.join(pkgSpecFeaturesDir, feat.name);
+          const destFeat = path.join(targetFeaturesDir, feat.name);
+          if (path.resolve(srcFeat) !== path.resolve(destFeat) && !existsSync(destFeat)) {
+            copyDirIfExists(srcFeat, destFeat);
+            console.log(`✔ .spec/features/${feat.name}/ criado a partir do kit`);
+          }
+        }
+      }
+    } catch (e) {
+      // Ignora falhas na listagem de diretórios
+    }
+  }
 
   const constitutionPath = path.join(specRoot, 'constituicao.md');
   if (existsSync(constitutionPath)) {
@@ -271,6 +292,27 @@ function cmdInit(rootDir, flags) {
     } else {
       copyDirIfExists(skillDir, dest);
       console.log(`✔ skill instalada em ${destRel} (${rotulo})`);
+    }
+
+    // Instalar todas as outras skills do kit (educaflex-spec, react-best-practices, etc.)
+    const pkgSkillsDir = path.resolve(__dirname, '..', '..', '..', '..');
+    if (existsSync(pkgSkillsDir)) {
+      try {
+        const items = readdirSync(pkgSkillsDir, { withFileTypes: true });
+        for (const item of items) {
+          if (item.isDirectory() && item.name !== 'onp-spec-driven') {
+            const srcSkill = path.join(pkgSkillsDir, item.name);
+            const destSkillRel = path.join(SKILLS_DIR_PROJETO[agent], 'skills', item.name);
+            const destSkill = path.join(rootDir, destSkillRel);
+            if (path.resolve(srcSkill) !== path.resolve(destSkill)) {
+              copyDirIfExists(srcSkill, destSkill);
+              console.log(`✔ skill instalada em ${destSkillRel}`);
+            }
+          }
+        }
+      } catch (e) {
+        // Ignora caso ocorra algum erro na listagem de diretórios
+      }
     }
     // o Cursor lê .cursor/skills E .agents/skills nativamente (e .claude/
     // .codex por compatibilidade) — duas variantes no mesmo projeto = duas
