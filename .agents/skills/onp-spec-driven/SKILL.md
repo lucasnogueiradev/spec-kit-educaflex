@@ -1,10 +1,12 @@
 ---
 
 name: onp-spec-driven
-description: Desenvolvimento spec-anchored nativo para Antigravity — a especificação continua verdadeira porque é auditada mecanicamente contra o código. Fluxo Especificar → Projetar → Tarefas → Plano → Executar → Auditar → Aprender, com rastreabilidade história→critério de aceite→tarefa→teste, definição de pronto executável (cada critério de aceite vira teste anotado), suposições e perguntas como cidadãs de primeira classe, constituição verificável (preset LGPD/educação), lições aprendidas com lastro mecânico e plano de execução com PARALELISMO OPCIONAL: o agente apresenta o plano recomendado e SEMPRE pergunta QUAIS tarefas o usuário quer paralelizar (faixas com git worktrees + agentes paralelos nativos do Antigravity via --paralelizar, ou uma tarefa após a outra via --sequencial), avisa que a execução roda em background e, durante ela, posta no chat a cada 1 minuto a tabela de andamento (o que está rodando e o que não está) + resumo geral — com resumo completo ao final. Integração com Artifacts (task.md, implementation_plan.md, walkthrough.md) e Slash Commands (/goal, /grill-me, /schedule, /learn). Motor mecânico EMBARCADO na skill (zero instalação — roda com o node do ambiente). Use ao planejar features, implementar com verificação, ou auditar uma implementação contra a spec. Gatilhos "especificar feature", "nova feature", "implementar", "auditar spec", "verificar", "plano de execução", "executar em paralelo", "o que não tem teste", "lições aprendidas".
+description: Desenvolvimento spec-anchored. A especificação continua verdadeira porque é auditada mecanicamente contra o código. Fluxo Especificar → Projetar → Tarefas → Plano → Executar → Auditar → Aprender, com rastreabilidade história→critério de aceite→tarefa→teste, definição de pronto executável (cada critério de aceite vira teste anotado), suposições e perguntas como cidadãs de primeira classe, constituição verificável (preset LGPD/educação), lições aprendidas com lastro mecânico. Motor mecânico EMBARCADO na skill (zero instalação — roda com o node do ambiente). Use ao planejar features, implementar com verificação, ou auditar uma implementação contra a spec. Gatilhos "especificar feature", "nova feature", "implementar", "auditar spec", "verificar", "plano de execução", "executar em paralelo", "o que não tem teste", "lições aprendidas".
+metadata:
+  license: MIT
 ---
 
-# onp-spec-driven — a especificação que continua verdadeira (Antigravity)
+# onp-spec-driven — a especificação que continua verdadeira
 
 A maioria das ferramentas de SDD é **spec-first**: a especificação gera código,
 o código evolui, e a especificação vira mentira. Esta é **spec-anchored**: a
@@ -38,39 +40,22 @@ Exemplo: diga "o critério de aceite AC-003 (aviso de atraso) ainda não tem
 teste", nunca "o AC-003 falta @spec tag". Nunca exija que o usuário conheça
 as siglas para entender o que você disse.
 
-## Interação — use todo o potencial do Antigravity
+## Interação — seja transparente e comunicativo
 
-Esta skill roda nativamente dentro do Antigravity. Use os recursos nativos
-(Artifacts e Slash Commands) para deixar o fluxo visível e interativo, sem
-virar burocracia:
+Como agente de IA, sua função é orquestrar o processo sem virar burocracia:
 
 - **Explique o que fez e onde está**: depois de CADA ação, diga em português
   simples (1) o que foi feito, (2) o caminho de cada arquivo criado ou
   alterado, (3) qual é o próximo passo. O usuário nunca deveria precisar
   perguntar "cadê o arquivo?" nem "e agora?".
-- **Lista de tarefas (Artifact de tasks)**: ao iniciar a execução, crie e
-  mantenha o Artifact de lista de tarefas do Antigravity (task.md) com um item
-  por tarefa (T-xxx), atualizando `[ ]`, `[/]`, `[x]` a cada passo — o usuário
-  acompanha visualmente. Deixe o Antigravity resolver onde o artifact mora;
-  nunca assuma um caminho interno fixo.
-- **Projeto e decisões (Artifact `implementation_plan.md`)**: na fase Projetar
-  e no Plano de execução, escreva o plano nesse artifact com
-  `request_feedback = true`. Mapeie as perguntas em aberto (Q-xxx) e as
+- **Lista de tarefas**: mantenha uma visibilidade clara (em markdown, console, ou
+  recursos nativos do seu ambiente) das tarefas em andamento.
+- **Projeto e decisões**: na fase Projetar e no Plano de execução, apresente 
+  seu plano claramente. Mapeie as perguntas em aberto (Q-xxx) e as
   suposições (ASM-xxx) para forçar a revisão do usuário ANTES da execução.
-  Avise que ele pode usar `/grill-me` para responder em modo entrevista.
-- **Validação e resumo (Artifact `walkthrough.md`)**: quando `verify` e
-  `audit --ci` saírem limpos, atualize o walkthrough com os resultados, as
-  lições registradas e a prova mecânica (a saída do audit).
-- **Slash Commands** — recomende no momento certo:
-  - `/goal`: para fechar uma feature inteira — itere implementação + `verify`
-    - `audit --ci` até exit 0. Persistir é implementar de verdade; as regras
-      do contrato (abaixo) continuam valendo dentro do `/goal`.
-  - `/grill-me`: sessão de entrevista para esclarecer requisitos e design
-    (resolve Q-xxx e confirma ASM-xxx).
-  - `/schedule`: monitorar suítes de teste longas ou tarefas em background.
-  - `/learn`: depois de resolver um problema difícil e específico do projeto,
-    sugira `/learn` para o Antigravity guardar o comportamento — além das
-    lições mecânicas do `onp-spec licoes`.
+- **Validação e resumo**: quando as ferramentas locais (como o `audit --ci`) 
+  saírem limpas, atualize o usuário com os resultados, as lições registradas 
+  e a prova mecânica (a saída do audit).
 - **Traduza a saída do motor**: depois de cada comando, resuma em 1–3 frases
   de português simples o que a máquina disse e qual o próximo passo. Cole a
   saída bruta também (a prova é ela), mas nunca a entregue sozinha.

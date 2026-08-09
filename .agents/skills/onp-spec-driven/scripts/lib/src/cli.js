@@ -51,27 +51,6 @@ const TEMPLATES_DIR = path.join(__dirname, '..', 'templates');
 // O fallback embarcado só vale se a SKILL.md encontrada for DO agente pedido
 // (marcador `agent:` no frontmatter) — senão instalaríamos a skill errada
 // anunciando sucesso.
-function skillAgentMarker(dir) {
-  try {
-    const conteudo = readFileSync(path.join(dir, 'SKILL.md'), 'utf-8');
-    const frontmatter = conteudo.split(/^---\s*$/m)[1] || '';
-    const m = frontmatter.match(/^\s*agent:\s*(\S+)/m);
-    return m ? m[1] : null;
-  } catch {
-    return null;
-  }
-}
-
-const SKILL_DIR_POR_AGENTE = {
-  claude: 'onp-spec-driven',
-  antigravity: 'onp-spec-driven-antigravity',
-  codex: 'onp-spec-driven-codex',
-  cursor: 'onp-spec-driven-cursor',
-};
-
-// diretório de skills que cada agente lê DENTRO do projeto (o nome da pasta
-// da skill instalada é sempre onp-spec-driven — no Cursor o `name:` do
-// frontmatter TEM que ser igual ao nome da pasta)
 const SKILLS_DIR_PROJETO = {
   claude: '.claude',
   antigravity: '.agents',
@@ -80,16 +59,14 @@ const SKILLS_DIR_PROJETO = {
 };
 
 function resolveSkillDir(agent = 'claude') {
-  const dirName = SKILL_DIR_POR_AGENTE[agent] || 'onp-spec-driven';
+  const dirName = 'onp-spec-driven';
   const candidates = [
     path.join(__dirname, '..', 'skills', dirName),
     path.join(__dirname, '..', '..', '..'),
   ];
   for (const dir of candidates) {
     if (!existsSync(path.join(dir, 'SKILL.md'))) continue;
-    const marker = skillAgentMarker(dir);
-    if (marker && marker !== agent) continue; // skill de outro agente — não serve
-    return dir;
+    return dir; // Como a skill agora é agnóstica, não verificamos mais marker
   }
   return null;
 }
@@ -273,19 +250,9 @@ function cmdInit(rootDir, flags) {
     const destRel = path.join(SKILLS_DIR_PROJETO[agent], 'skills', 'onp-spec-driven');
     const dest = path.join(rootDir, destRel);
     const skillDir = resolveSkillDir(agent);
-    const marcadorExistente = skillAgentMarker(dest);
-    if (marcadorExistente && marcadorExistente !== agent) {
-      const nota =
-        SKILLS_DIR_PROJETO[agent] === '.agents' ? ' — Codex e Antigravity compartilham esse diretório.' : '.';
-      console.error(
-        `✘ ${destRel} já contém a skill do agente "${marcadorExistente}"${nota}\n` +
-          `  Para trocar de agente, remova a pasta antes: rm -rf ${destRel}`
-      );
-      return 2;
-    }
     if (!skillDir) {
       console.log(
-        `· skill para ${rotulo} não encontrada junto a este motor — instale com: npx @onovoprogramador/onp-spec init --agents ${agent}`
+        `· skill para ${rotulo} não encontrada junto a este motor — instale com: node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs init --agents ${agent}`
       );
     } else if (path.resolve(dest) === path.resolve(skillDir)) {
       console.log(`· skill já instalada em ${destRel} — mantida`);
@@ -315,14 +282,12 @@ function cmdInit(rootDir, flags) {
       }
     }
     // o Cursor lê .cursor/skills E .agents/skills nativamente (e .claude/
-    // .codex por compatibilidade) — duas variantes no mesmo projeto = duas
-    // skills com o MESMO nome, e o Cursor pode carregar a errada
+    // .codex por compatibilidade) — avisamos caso exista conflito.
     if (agent === 'cursor') {
       for (const outroDir of ['.claude', '.agents']) {
-        const marcadorOutro = skillAgentMarker(path.join(rootDir, outroDir, 'skills', 'onp-spec-driven'));
-        if (marcadorOutro && marcadorOutro !== 'cursor') {
+        if (existsSync(path.join(rootDir, outroDir, 'skills', 'onp-spec-driven'))) {
           console.log(
-            `⚠ este projeto também tem a skill do agente "${marcadorOutro}" em ${outroDir}/skills/onp-spec-driven — o Cursor lê esse diretório também e pode carregar a skill errada.\n` +
+            `⚠ este projeto também tem a skill instalada em ${outroDir}/skills/onp-spec-driven — o Cursor lê esse diretório também e pode carregar a skill errada.\n` +
               `  Se este projeto é do Cursor, remova a outra: rm -rf ${outroDir}/skills/onp-spec-driven`
           );
         }
@@ -405,22 +370,19 @@ function detectarAgente(rootDir, flag) {
     if (!AGENTES.includes(flag)) return { erro: `--agents desconhecido: "${flag}" (use: ${AGENTES.join(', ')})` };
     return { agent: flag };
   }
-  // motor embarcado: este arquivo mora em <skill>/scripts/lib/src
-  const marcadorProprio = skillAgentMarker(path.join(__dirname, '..', '..', '..'));
-  if (AGENTES.includes(marcadorProprio)) return { agent: marcadorProprio };
   const segmentos = __dirname.split(path.sep);
   if (segmentos.includes('.codex')) return { agent: 'codex' };
-  // só .cursor/skills conta: ~/.cursor/worktrees/<repo> é um checkout comum
-  // dos agentes paralelos do Cursor, não uma instalação da skill
   const iCursor = segmentos.indexOf('.cursor');
   if (iCursor !== -1 && segmentos[iCursor + 1] === 'skills') return { agent: 'cursor' };
   if (segmentos.includes('.agents')) return { agent: 'antigravity' };
   if (segmentos.includes('.claude')) return { agent: 'claude' };
+  
   const temClaude = existsSync(path.join(rootDir, '.claude', 'skills', 'onp-spec-driven'));
-  const marcadorProjeto = skillAgentMarker(path.join(rootDir, '.agents', 'skills', 'onp-spec-driven'));
-  if (AGENTES.includes(marcadorProjeto) && !temClaude) return { agent: marcadorProjeto };
-  const marcadorCursor = skillAgentMarker(path.join(rootDir, '.cursor', 'skills', 'onp-spec-driven'));
-  if (AGENTES.includes(marcadorCursor) && !temClaude) return { agent: marcadorCursor };
+  const temAgents = existsSync(path.join(rootDir, '.agents', 'skills', 'onp-spec-driven'));
+  const temCursor = existsSync(path.join(rootDir, '.cursor', 'skills', 'onp-spec-driven'));
+  
+  if (temCursor && !temClaude) return { agent: 'cursor' };
+  if (temAgents && !temClaude) return { agent: 'antigravity' };
   const temAg = existsSync(path.join(rootDir, '.agents', 'skills', 'onp-spec-driven'));
   if (temAg && !temClaude) return { agent: 'antigravity' };
   return { agent: 'claude' };

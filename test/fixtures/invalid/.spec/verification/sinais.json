@@ -32,19 +32,19 @@
       "codigo": "AC_SEM_TESTE",
       "feature": "login",
       "ref": "AC-001",
-      "ocorrencias": 4,
+      "ocorrencias": 9,
       "primeiraVez": "2026-08-09T19:28:55.031Z",
-      "ultimaVez": "2026-08-09T19:31:42.083Z",
-      "gitRev": "570c801"
+      "ultimaVez": "2026-08-09T20:11:26.940Z",
+      "gitRev": "2a974de"
     },
     "TASK_CONCLUIDA_SEM_PROVA::login::T-001": {
       "codigo": "TASK_CONCLUIDA_SEM_PROVA",
       "feature": "login",
       "ref": "T-001",
-      "ocorrencias": 3,
+      "ocorrencias": 8,
       "primeiraVez": "2026-08-09T19:29:25.635Z",
-      "ultimaVez": "2026-08-09T19:31:42.082Z",
-      "gitRev": "570c801"
+      "ultimaVez": "2026-08-09T20:11:26.939Z",
+      "gitRev": "2a974de"
     }
   }
 }

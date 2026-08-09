@@ -1,6 +1,7 @@
 {
   "name": "educaflex-cli",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "MVP do Educaflex CLI para Spec-Driven Development",
   "main": "dist/index.js",
   "bin": {

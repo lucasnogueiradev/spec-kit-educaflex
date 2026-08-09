@@ -1,5 +1,5 @@
 // Configuração do projeto — onpspec.config.json na raiz (opcional).
-// Tudo tem default sensato: `npx onp-spec audit` funciona sem config.
+// Tudo tem default sensato: `node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs audit` funciona sem config.
 
 import { readFileSync, existsSync } from 'fs';
 import path from 'path';

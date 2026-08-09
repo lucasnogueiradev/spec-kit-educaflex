@@ -17,6 +17,15 @@ Em vez de começar escrevendo código às cegas, o fluxo segue 4 passos simples:
 3. **Codificar com Segurança:** A IA ou você implementam o código com base nas regras do projeto.
 4. **Auditar:** O motor verifica mecanicamente se 100% dos critérios foram testados e aprovados.
 
+Você precisa de ferramentas que **ditem o ritmo** e estruturem o raciocínio para você não se perder.
+
+## ⚖️ Qual ferramenta usar?
+
+Este repositório contém duas ferramentas. Para não haver confusão, siga a recomendação abaixo:
+
+- ✅ **Motor Embarcado (`onp-spec`):** **(Recomendado)** É a ferramenta principal e canônica. Ela atua como um juiz passivo e rigoroso, orientando a IA através de comandos CLI leves (`onp-spec audit`, `onp-spec plano`). É a base do curso.
+- 🚧 **Educaflex CLI (`packages/cli`):** **(Experimental)** É um protótipo isolado que tenta automatizar todo o fluxo em um comando só (`educaflex run`). Ele não escreve código por você (você ainda depende de uma IA externa), e o formato de uso **não** é o fluxo recomendado para produção ou aprendizado primário. Use por sua conta e risco. (Veja a [documentação do protótipo](packages/cli/README.md)).
+
 ---
 
 ## 📦 Como Baixar e Usar
@@ -59,7 +68,7 @@ pnpm install
 
 O kit segue o ciclo de desenvolvimento **Spec-Anchored**: a especificação é mantida verdadeira porque é auditada mecanicamente contra o código.
 
-> 🚀 **NOVIDADE:** Agora temos um MVP completo da **Educaflex CLI** em TypeScript que automatiza o inicio do ciclo (`educaflex run`)! Ele lê as intenções, gera as tasks e faz o scaffold dos testes (que inicialmente falham). O controle então é devolvido à sua IA para codar de verdade, sem simulações mentirosas. Após codar, você re-executa para rodar a auditoria final. Leia mais na [Documentação da CLI](packages/cli/README.md).
+> 🚧 **AVISO:** Existe um protótipo de automação em `packages/cli` (a **Educaflex CLI**), mas ela é estritamente experimental. O fluxo recomendado do curso e o motor oficial do projeto continuam sendo a skill embarcada em `onp-spec` (detalhes na seção abaixo).
 
 ```text
 ┌───────────┐    ┌────────┐    ┌───────┐    ┌────────┐    ┌───────┐

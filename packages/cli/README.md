@@ -1,6 +1,6 @@
 # Educaflex CLI (MVP)
 
-A **Educaflex CLI** é uma ferramenta de orquestração construída em TypeScript (Node.js) que automatiza o ciclo completo de desenvolvimento guiado por especificações (**Spec-Driven Development — SDD**).
+> 🚧 **Aviso:** Protótipo experimental — a etapa de implementação automática ainda não está funcional. Não use em produção nem no fluxo recomendado do curso.
 
 Diferente de templates passivos, esta CLI atua como um juiz mecânico: ela lê o seu planejamento, converte em tarefas, gera os esqueletos de testes, invoca o Agente de IA para a implementação e **audita mecanicamente** se a IA cumpriu com o prometido.
 
