@@ -59,6 +59,8 @@ pnpm install
 
 O kit segue o ciclo de desenvolvimento **Spec-Anchored**: a especificação é mantida verdadeira porque é auditada mecanicamente contra o código.
 
+> 🚀 **NOVIDADE:** Agora temos um MVP completo da **Educaflex CLI** em TypeScript que automatiza todo esse ciclo em um único comando (`educaflex run`)! Ele gera as tasks, faz o scaffold dos testes e roda a auditoria para garantir que a IA provou as intenções. Leia mais na [Documentação da CLI](packages/cli/README.md).
+
 ```text
 ┌───────────┐    ┌────────┐    ┌───────┐    ┌────────┐    ┌───────┐
 │ESPECIFICAR│ ➔  │PROJETAR│ ➔  │TAREFAS│ ➔  │EXECUTAR│ ➔  │AUDITAR│
