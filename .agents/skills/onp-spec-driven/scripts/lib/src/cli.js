@@ -383,8 +383,6 @@ function detectarAgente(rootDir, flag) {
   
   if (temCursor && !temClaude) return { agent: 'cursor' };
   if (temAgents && !temClaude) return { agent: 'antigravity' };
-  const temAg = existsSync(path.join(rootDir, '.agents', 'skills', 'onp-spec-driven'));
-  if (temAg && !temClaude) return { agent: 'antigravity' };
   return { agent: 'claude' };
 }
 

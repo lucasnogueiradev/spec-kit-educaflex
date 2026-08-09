@@ -1,6 +1,6 @@
 {
   "name": "spec-kit-educaflex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "description": "Kit de desenvolvimento guiado por especificações (Spec-Driven Development) Educaflex",
   "type": "module",
