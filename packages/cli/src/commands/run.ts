@@ -7,7 +7,6 @@ import chalk from 'chalk';
 import { parseSpec } from '../parsers/specParser';
 import { generateTasks } from '../generators/taskGenerator';
 import { generateTests } from '../generators/testGenerator';
-import { simulateAIImplementation } from '../agent/simulator';
 import { runAudit } from '../engine/audit';
 
 export const runCommand = new Command('run')
@@ -21,7 +20,7 @@ export const runCommand = new Command('run')
     console.log(chalk.cyan(`\n🚀 Iniciando ciclo SDD para: ${specPath}\n`));
 
     // Passo 1: Parse
-    console.log(chalk.yellow(`[1/6] Lendo e validando a especificação...`));
+    console.log(chalk.yellow(`[1/5] Lendo e validando a especificação...`));
     if (!fs.existsSync(specPath)) {
       console.error(chalk.red(`Arquivo não encontrado: ${specPath}`));
       process.exit(1);
@@ -30,19 +29,15 @@ export const runCommand = new Command('run')
     console.log(chalk.gray(`      -> Feature: ${spec.title} | ${spec.acs.length} ACs encontrados.`));
 
     // Passo 2: Tasks
-    console.log(chalk.yellow(`[2/6] Gerando tasks.md...`));
+    console.log(chalk.yellow(`[2/5] Gerando tasks.md...`));
     generateTasks(spec, featureDir);
 
     // Passo 3: Tests
-    console.log(chalk.yellow(`[3/6] Gerando scaffold de testes...`));
+    console.log(chalk.yellow(`[3/5] Gerando scaffold de testes...`));
     generateTests(spec, testsDir);
 
-    // Passo 4: Agent
-    console.log(chalk.yellow(`[4/6] Acionando IA para implementação...`));
-    simulateAIImplementation(spec, testsDir);
-
-    // Passo 5: Run Tests
-    console.log(chalk.yellow(`[5/6] Executando testes automatizados...`));
+    // Passo 4: Run Tests
+    console.log(chalk.yellow(`\n[4/5] Executando testes automatizados...`));
     const vitestOut = path.join(featureDir, 'vitest-output.json');
     try {
       // Using npx vitest directly. We ensure it outputs JSON.
@@ -53,8 +48,8 @@ export const runCommand = new Command('run')
       // Vitest exits with 1 if tests fail, which is expected here for negative cases.
     }
 
-    // Passo 6: Audit
-    console.log(chalk.yellow(`[6/6] Rodando auditoria final...`));
+    // Passo 5: Audit
+    console.log(chalk.yellow(`\n[5/5] Rodando auditoria final...`));
     const passed = runAudit(spec, vitestOut);
 
     if (passed) {
@@ -62,6 +57,7 @@ export const runCommand = new Command('run')
       process.exit(0);
     } else {
       console.error(chalk.red(`\n💥 Auditoria FALHOU! O código não cumpre 100% da especificação.`));
+      console.log(chalk.gray(`\n👉 Dica: Leia o log acima, implemente o código que falta e rode 'educaflex run' novamente.`));
       process.exit(1);
     }
   });
