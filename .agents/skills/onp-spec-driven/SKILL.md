@@ -1,12 +1,6 @@
 ---
 name: onp-spec-driven
 description: Desenvolvimento spec-anchored nativo para Antigravity — a especificação continua verdadeira porque é auditada mecanicamente contra o código. Fluxo Especificar → Projetar → Tarefas → Plano → Executar → Auditar → Aprender, com rastreabilidade história→critério de aceite→tarefa→teste, definição de pronto executável (cada critério de aceite vira teste anotado), suposições e perguntas como cidadãs de primeira classe, constituição verificável (preset LGPD/educação), lições aprendidas com lastro mecânico e plano de execução com PARALELISMO OPCIONAL: o agente apresenta o plano recomendado e SEMPRE pergunta QUAIS tarefas o usuário quer paralelizar (faixas com git worktrees + agentes paralelos nativos do Antigravity via --paralelizar, ou uma tarefa após a outra via --sequencial), avisa que a execução roda em background e, durante ela, posta no chat a cada 1 minuto a tabela de andamento (o que está rodando e o que não está) + resumo geral — com resumo completo ao final. Integração com Artifacts (task.md, implementation_plan.md, walkthrough.md) e Slash Commands (/goal, /grill-me, /schedule, /learn). Motor mecânico EMBARCADO na skill (zero instalação — roda com o node do ambiente). Use ao planejar features, implementar com verificação, ou auditar uma implementação contra a spec. Gatilhos "especificar feature", "nova feature", "implementar", "auditar spec", "verificar", "plano de execução", "executar em paralelo", "o que não tem teste", "lições aprendidas".
-license: MIT
-metadata:
-  author: Vitor Manoel — O Novo Programador
-  version: 3.6.0
-  agent: antigravity
----
 
 # onp-spec-driven — a especificação que continua verdadeira (Antigravity)
 
