@@ -14,6 +14,7 @@
     "onpspec.config.json"
   ],
   "scripts": {
+    "test": "node --test test/**/*.test.mjs",
     "spec": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs",
     "init": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs init",
     "audit": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs audit"

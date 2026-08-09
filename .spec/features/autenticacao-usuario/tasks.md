@@ -30,9 +30,8 @@
 - Arquivos: src/controllers/authController.js, src/routes/authRoutes.js
 - Notas: Validar se o e-mail já existe. Se não, inserir o tenant e o usuário no banco, fazendo o hash da senha usando bcrypt. Retornar HTTP 201.
 
-## T-003 — Implementar Rota de Login, Geração de JWT e Rate Limiting [pendente]
-
-- Refs: US-002, AC-003, AC-004, AC-004.5
+## T-003 Implementar geração do JWT e Cookie HttpOnly [pendente]
+- Refs: US-002, AC-003, AC-004
 - Arquivos: src/controllers/authController.js, src/utils/jwt.js, src/routes/authRoutes.js
 - Notas: Aplicar middleware de `express-rate-limit` (ex: máx 5 tentativas por 15 min) na rota de login. Verificar e-mail e hash da senha. Se sucesso, gerar JWT. Enviar resposta com `res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' })`. **ATENÇÃO:** Não inclua o token no objeto JSON da resposta.
 

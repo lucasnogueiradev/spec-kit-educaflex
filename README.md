@@ -138,6 +138,21 @@ npm run audit
 
 O `audit` checa se cada critério **"Como eu sei que funcionou"** possui testes passando e traz sugestões em português simples caso falte algo.
 
+## 🎓 Exercício Prático: O Desafio de Autenticação
+
+Para você entender a dinâmica na prática, o kit **já vem com uma funcionalidade de exemplo** pronta para ser desenvolvida: a \`autenticacao-usuario\`.
+
+Se você rodar \`npm run audit\` agora no projeto recém-clonado, o motor vai propositalmente **falhar** avisando que faltam testes (\`AC_SEM_TESTE\`) e que os arquivos de código não existem (\`ARQUIVO_INEXISTENTE\`). Isso é o comportamento esperado do framework protegendo o seu projeto de features não implementadas!
+
+**Como resolver o exercício:**
+1. Leia a especificação e as tarefas prontas dentro da pasta \`.spec/features/autenticacao-usuario/\`.
+2. Peça para o motor gerar os testes-esqueleto rodando:
+   \`\`\`bash
+   npm run spec -- scaffold autenticacao-usuario
+   \`\`\`
+3. Peça para o seu Agente de IA (Antigravity, Cursor, etc) ou escreva você mesmo o código seguindo as instruções das \`tasks.md\` até que os testes passem.
+4. Rode \`npm run audit\` novamente. Quando a saída for verde com zero erros, parabéns: você concluiu o exercício com prova mecânica de qualidade!
+
 ---
 
 ## 🌿 Workflow Recomendado de Git (Trabalhando Solo)

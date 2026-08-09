@@ -1,6 +1,8 @@
 ---
+
 name: onp-spec-driven
 description: Desenvolvimento spec-anchored nativo para Antigravity — a especificação continua verdadeira porque é auditada mecanicamente contra o código. Fluxo Especificar → Projetar → Tarefas → Plano → Executar → Auditar → Aprender, com rastreabilidade história→critério de aceite→tarefa→teste, definição de pronto executável (cada critério de aceite vira teste anotado), suposições e perguntas como cidadãs de primeira classe, constituição verificável (preset LGPD/educação), lições aprendidas com lastro mecânico e plano de execução com PARALELISMO OPCIONAL: o agente apresenta o plano recomendado e SEMPRE pergunta QUAIS tarefas o usuário quer paralelizar (faixas com git worktrees + agentes paralelos nativos do Antigravity via --paralelizar, ou uma tarefa após a outra via --sequencial), avisa que a execução roda em background e, durante ela, posta no chat a cada 1 minuto a tabela de andamento (o que está rodando e o que não está) + resumo geral — com resumo completo ao final. Integração com Artifacts (task.md, implementation_plan.md, walkthrough.md) e Slash Commands (/goal, /grill-me, /schedule, /learn). Motor mecânico EMBARCADO na skill (zero instalação — roda com o node do ambiente). Use ao planejar features, implementar com verificação, ou auditar uma implementação contra a spec. Gatilhos "especificar feature", "nova feature", "implementar", "auditar spec", "verificar", "plano de execução", "executar em paralelo", "o que não tem teste", "lições aprendidas".
+---
 
 # onp-spec-driven — a especificação que continua verdadeira (Antigravity)
 
@@ -22,15 +24,15 @@ Os arquivos usam **códigos de rastreio** curtos (é o que liga especificação,
 tarefas e testes na máquina). Mas com o usuário você fala **sempre o nome por
 extenso** — o código vai entre parênteses quando precisar dele:
 
-| Código | Nome que você usa com o usuário |
-|---|---|
-| US-xxx | **história de usuário** — quem precisa, o que precisa e por quê |
-| AC-xxx | **critério de aceite** — resultado observável que um teste checa |
-| T-xxx | **tarefa** — passo de implementação |
-| ASM-xxx | **suposição** — lacuna preenchida com palpite, ainda sem confirmação |
-| Q-xxx | **pergunta em aberto** — decisão que falta o dono do produto tomar |
-| P-xxx | **princípio** (da constituição) — restrição inegociável do projeto |
-| DoD | **definição de pronto** — o conjunto de critérios de aceite com prova |
+| Código  | Nome que você usa com o usuário                                       |
+| ------- | --------------------------------------------------------------------- |
+| US-xxx  | **história de usuário** — quem precisa, o que precisa e por quê       |
+| AC-xxx  | **critério de aceite** — resultado observável que um teste checa      |
+| T-xxx   | **tarefa** — passo de implementação                                   |
+| ASM-xxx | **suposição** — lacuna preenchida com palpite, ainda sem confirmação  |
+| Q-xxx   | **pergunta em aberto** — decisão que falta o dono do produto tomar    |
+| P-xxx   | **princípio** (da constituição) — restrição inegociável do projeto    |
+| DoD     | **definição de pronto** — o conjunto de critérios de aceite com prova |
 
 Exemplo: diga "o critério de aceite AC-003 (aviso de atraso) ainda não tem
 teste", nunca "o AC-003 falta @spec tag". Nunca exija que o usuário conheça
@@ -61,8 +63,8 @@ virar burocracia:
   lições registradas e a prova mecânica (a saída do audit).
 - **Slash Commands** — recomende no momento certo:
   - `/goal`: para fechar uma feature inteira — itere implementação + `verify`
-    + `audit --ci` até exit 0. Persistir é implementar de verdade; as regras
-    do contrato (abaixo) continuam valendo dentro do `/goal`.
+    - `audit --ci` até exit 0. Persistir é implementar de verdade; as regras
+      do contrato (abaixo) continuam valendo dentro do `/goal`.
   - `/grill-me`: sessão de entrevista para esclarecer requisitos e design
     (resolve Q-xxx e confirma ASM-xxx).
   - `/schedule`: monitorar suítes de teste longas ou tarefas em background.
@@ -131,11 +133,11 @@ fosse o gate mecânico.
 
 ## Auto-dimensionamento
 
-| Escopo | Especificar | Projetar | Tarefas | Plano | Executar |
-|---|---|---|---|---|---|
-| Pequeno (≤3 arquivos) | spec enxuta | pular | implícito | pular | implementar + verify + audit |
-| Médio (<10 tarefas) | spec completa | inline | inline | se 2+ tarefas | implementar + verify + audit |
-| Grande (multi-componente) | spec + design | design.md | tasks.md | sempre | por faixa + verify + audit |
+| Escopo                    | Especificar   | Projetar  | Tarefas   | Plano         | Executar                     |
+| ------------------------- | ------------- | --------- | --------- | ------------- | ---------------------------- |
+| Pequeno (≤3 arquivos)     | spec enxuta   | pular     | implícito | pular         | implementar + verify + audit |
+| Médio (<10 tarefas)       | spec completa | inline    | inline    | se 2+ tarefas | implementar + verify + audit |
+| Grande (multi-componente) | spec + design | design.md | tasks.md  | sempre        | por faixa + verify + audit   |
 
 **Sempre obrigatórios:** Especificar e Auditar.
 **Válvula de segurança:** mesmo pulando Tarefas, comece o Executar listando os
@@ -175,8 +177,8 @@ listas no plano.
   do Antigravity para o acompanhamento `[ ]`/`[/]`/`[x]`.
 - **Fechou o tasks.md? Anuncie o paralelismo e PERGUNTE QUAIS.** Rode
   `onp-spec plano <feature>` e apresente ao usuário, sem ele pedir, o plano
-  como RECOMENDAÇÃO: *"X destas Y tarefas podem rodar EM PARALELO, em N
-  faixas — recomendo assim."* Em seguida pergunte (no chat ou via
+  como RECOMENDAÇÃO: _"X destas Y tarefas podem rodar EM PARALELO, em N
+  faixas — recomendo assim."_ Em seguida pergunte (no chat ou via
   `implementation_plan.md` com `request_feedback = true`): **quais tarefas
   ele quer paralelizar?** — todas (a recomendação), um subconjunto, ou
   nenhuma (uma após a outra). A escolha é dele — nunca execute sem essa
@@ -259,7 +261,7 @@ histórico de sinais (todo problema de audit e toda falha/skip de verify).
 - `onp-spec licoes sugerir` — o motor aponta sinais que recorreram em
   features distintas e ainda não têm lição.
 - Registre **no máximo 3 lições** com `onp-spec licoes add --sinal <CODIGO>
-  --feature <f> --fonte <AC-xxx> --texto "regra geral em uma frase"`.
+--feature <f> --fonte <AC-xxx> --texto "regra geral em uma frase"`.
   O motor RECUSA lição sem sinal real (`LICAO_SEM_LASTRO`) — não force.
 - **Caminho limpo → nenhuma lição.** Isso é correto, não é omissão.
 - Feche o Artifact `walkthrough.md` com: o que foi entregue, onde está cada
@@ -272,23 +274,23 @@ O audit imprime cada problema com o nome legível na frente e o código estável
 entre parênteses (o código serve para CI e para `licoes add --sinal`). Ao
 conversar com o usuário, use o nome legível.
 
-| Problema (código) | O que significa | O que fazer |
-|---|---|---|
-| critério de aceite sem teste (AC_SEM_TESTE) | requisito sem prova | escreva o teste com `@spec:AC-xxx` no título |
-| critério de aceite sem prova (AC_SEM_PROVA) | teste existe, nunca passou (ou foi PULADO) | rode `verify`; skip não é prova |
-| teste órfão (TESTE_ORFAO) | teste aponta pra critério que sumiu (drift!) | a especificação mudou — atualize o teste |
-| referência quebrada (REF_QUEBRADA) | tarefa cita história/critério inexistente | corrija a referência |
-| tarefa concluída sem prova (TASK_CONCLUIDA_SEM_PROVA) | tarefa [concluida] sem critério provado | verifique ou reabra a tarefa |
-| status de tarefa inválido (TASK_STATUS_INVALIDO) | status não reconhecido | use pendente/em-andamento/concluida |
-| suposição em aberto (ASM_ABERTA) | suposição aberta numa feature "pronta" | confirme/invalide com o usuário |
-| seção obrigatória ausente (SECAO_AUSENTE) | spec sem seção Suposições/Perguntas | registre-as ou escreva "Nenhuma." |
-| princípio violado (PRINCIPIO_VIOLADO) | quebrou a constituição | conserte o código, não o princípio |
-| verificação não olha nenhum arquivo (GLOB_SEM_ARQUIVOS) | glob da constituição não casa nada | corrija o glob |
-| nível de princípio inválido (NIVEL_INVALIDO) | nível desconhecido | use [DEVE]/[RECOMENDADO]/[PODE] |
-| código órfão (ARQUIVO_ORFAO) | código que nenhuma tarefa mapeia | mapeie na tarefa ou questione o código |
-| nome da feature divergente (FEATURE_DIVERGENTE) | `> feature:` difere do diretório | alinhe os dois |
-| prova fraca (PROVA_FRACA) | prova só por exit code global | prefira reporter tap/vitest-json/jest-json |
-| código de rastreio curto/duplicado (ID_CURTO / ID_DUPLICADO) | fora da gramática / repetido | use 3+ dígitos, códigos únicos |
+| Problema (código)                                            | O que significa                              | O que fazer                                  |
+| ------------------------------------------------------------ | -------------------------------------------- | -------------------------------------------- |
+| critério de aceite sem teste (AC_SEM_TESTE)                  | requisito sem prova                          | escreva o teste com `@spec:AC-xxx` no título |
+| critério de aceite sem prova (AC_SEM_PROVA)                  | teste existe, nunca passou (ou foi PULADO)   | rode `verify`; skip não é prova              |
+| teste órfão (TESTE_ORFAO)                                    | teste aponta pra critério que sumiu (drift!) | a especificação mudou — atualize o teste     |
+| referência quebrada (REF_QUEBRADA)                           | tarefa cita história/critério inexistente    | corrija a referência                         |
+| tarefa concluída sem prova (TASK_CONCLUIDA_SEM_PROVA)        | tarefa [concluida] sem critério provado      | verifique ou reabra a tarefa                 |
+| status de tarefa inválido (TASK_STATUS_INVALIDO)             | status não reconhecido                       | use pendente/em-andamento/concluida          |
+| suposição em aberto (ASM_ABERTA)                             | suposição aberta numa feature "pronta"       | confirme/invalide com o usuário              |
+| seção obrigatória ausente (SECAO_AUSENTE)                    | spec sem seção Suposições/Perguntas          | registre-as ou escreva "Nenhuma."            |
+| princípio violado (PRINCIPIO_VIOLADO)                        | quebrou a constituição                       | conserte o código, não o princípio           |
+| verificação não olha nenhum arquivo (GLOB_SEM_ARQUIVOS)      | glob da constituição não casa nada           | corrija o glob                               |
+| nível de princípio inválido (NIVEL_INVALIDO)                 | nível desconhecido                           | use [DEVE]/[RECOMENDADO]/[PODE]              |
+| código órfão (ARQUIVO_ORFAO)                                 | código que nenhuma tarefa mapeia             | mapeie na tarefa ou questione o código       |
+| nome da feature divergente (FEATURE_DIVERGENTE)              | `> feature:` difere do diretório             | alinhe os dois                               |
+| prova fraca (PROVA_FRACA)                                    | prova só por exit code global                | prefira reporter tap/vitest-json/jest-json   |
+| código de rastreio curto/duplicado (ID_CURTO / ID_DUPLICADO) | fora da gramática / repetido                 | use 3+ dígitos, códigos únicos               |
 
 Também: história sem critério (`US_SEM_AC`), critério incompleto
 (`AC_INCOMPLETO`), critério sem tarefa (`AC_SEM_TASK`), pergunta em aberto

@@ -21,3 +21,6 @@ pnpm-debug.log*
 # Sistema Operacional
 .DS_Store
 Thumbs.db
+
+# Spec-Kit Educaflex
+.spec/verification/

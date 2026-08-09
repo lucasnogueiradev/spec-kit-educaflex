@@ -1,7 +1,7 @@
 # Spec: Autenticação de Usuário e Multi-tenant
 
 > feature: autenticacao-usuario
-> status: pronto
+> status: rascunho
 
 <!--
   Como ler este arquivo (o formato é verificado por `onp-spec audit`):

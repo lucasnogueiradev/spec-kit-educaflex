@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "sinais": {
+    "SPEC_SEM_US::login::.spec\\features\\login\\spec.md": {
+      "codigo": "SPEC_SEM_US",
+      "feature": "login",
+      "ref": ".spec\\features\\login\\spec.md",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-08-09T19:28:03.046Z",
+      "ultimaVez": "2026-08-09T19:28:25.762Z",
+      "gitRev": "570c801"
+    },
+    "SECAO_AUSENTE::login::.spec\\features\\login\\spec.md": {
+      "codigo": "SECAO_AUSENTE",
+      "feature": "login",
+      "ref": ".spec\\features\\login\\spec.md",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-08-09T19:28:03.048Z",
+      "ultimaVez": "2026-08-09T19:28:03.048Z",
+      "gitRev": "570c801"
+    },
+    "AC_SEM_TASK::login::AC-001": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "login",
+      "ref": "AC-001",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-08-09T19:28:54.812Z",
+      "ultimaVez": "2026-08-09T19:28:54.813Z",
+      "gitRev": "570c801"
+    },
+    "AC_SEM_TESTE::login::AC-001": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "login",
+      "ref": "AC-001",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-08-09T19:28:54.813Z",
+      "ultimaVez": "2026-08-09T19:29:25.383Z",
+      "gitRev": "570c801"
+    },
+    "TASK_CONCLUIDA_SEM_PROVA::login::T-001": {
+      "codigo": "TASK_CONCLUIDA_SEM_PROVA",
+      "feature": "login",
+      "ref": "T-001",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-08-09T19:29:25.382Z",
+      "ultimaVez": "2026-08-09T19:29:57.075Z",
+      "gitRev": "570c801"
+    },
+    "AC_SEM_PROVA::login::AC-001": {
+      "codigo": "AC_SEM_PROVA",
+      "feature": "login",
+      "ref": "AC-001",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-08-09T19:29:57.076Z",
+      "ultimaVez": "2026-08-09T19:29:57.076Z",
+      "gitRev": "570c801"
+    }
+  }
+}

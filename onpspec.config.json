@@ -10,5 +10,8 @@
   ],
   "srcGlobs": [
     "src/**"
+  ],
+  "ignoreGlobs": [
+    "test/fixtures/**"
   ]
 }
