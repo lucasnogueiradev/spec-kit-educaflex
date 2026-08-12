@@ -1,0 +1,33 @@
+{
+  "name": "spec-kit-educaflex",
+  "version": "1.0.1",
+  "author": "Lucas Nogueira <contato@lucasnogueiradev.com.br> (https://github.com/lucasnogueiradev)",
+  "license": "MIT",
+  "description": "Kit de desenvolvimento guiado por especificações (Spec-Driven Development) Educaflex",
+  "type": "module",
+  "bin": {
+    "spec-kit": "./bin/spec-kit.mjs",
+    "spec-kit-educaflex": "./bin/spec-kit.mjs"
+  },
+  "files": [
+    "bin/",
+    ".agents/",
+    ".spec/",
+    "onpspec.config.json"
+  ],
+  "scripts": {
+    "test": "node --test test/**/*.test.mjs",
+    "spec": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs",
+    "init": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs init",
+    "audit": "node .agents/skills/onp-spec-driven/scripts/onp-spec.mjs audit"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "supertest": "^7.2.2"
+  }
+}

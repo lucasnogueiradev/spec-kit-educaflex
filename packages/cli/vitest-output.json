@@ -1,0 +1,46 @@
+{
+  "numTotalTestSuites": 2,
+  "numPassedTestSuites": 2,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 2,
+  "numPassedTests": 2,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1786304937815,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Feature: Feature de Login"
+          ],
+          "fullName": " Feature: Feature de Login Login com credenciais válidas // @spec:AC-001",
+          "status": "passed",
+          "title": "Login com credenciais válidas // @spec:AC-001",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Feature: Feature de Login"
+          ],
+          "fullName": " Feature: Feature de Login Login com credenciais inválidas // @spec:AC-002",
+          "status": "passed",
+          "title": "Login com credenciais inválidas // @spec:AC-002",
+          "duration": 0,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1786304938596,
+      "endTime": 1786304938598,
+      "status": "passed",
+      "message": "",
+      "name": "C:/Users/luke_/Downloads/spec-kit-educaflex/packages/cli/example/features/login/tests/feature.spec.ts"
+    }
+  ]
+}
